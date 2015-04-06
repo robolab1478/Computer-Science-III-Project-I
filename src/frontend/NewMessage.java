@@ -7,9 +7,13 @@ import javax.swing.UIManager;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+
 import javax.swing.DefaultComboBoxModel;
+
 import java.awt.Insets;
 import java.awt.Component;
+import java.util.List;
+
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -57,9 +61,9 @@ public class NewMessage {
 		gbc_horizontalStrut.gridy = 2;
 		frame.getContentPane().add(horizontalStrut, gbc_horizontalStrut);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Govind", "Vikas", "Rohan the bitch"}));
-		comboBox.setForeground(UIManager.getColor("Button.foreground"));
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Govind", "Vikas", "Rohan the bitch"}));
+		comboBox.setForeground(UIManager.getColor("Button.background"));
 		comboBox.setBackground(UIManager.getColor("Button.foreground"));
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
@@ -93,7 +97,12 @@ public class NewMessage {
 		gbc_btnSendMessag.gridy = 8;
 		frame.getContentPane().add(btnSendMessag, gbc_btnSendMessag);
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setTitle("New Message | Ranom project name");
+		frame.setVisible(true);
+		backend.Main e = new backend.Main();
+		List<String> toConvert = e.getUsers();
+		String [] converted = (String[]) toConvert.toArray();
 	}
 
 }

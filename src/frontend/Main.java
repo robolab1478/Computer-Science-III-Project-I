@@ -10,6 +10,11 @@ import javax.swing.UIManager;
 import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Main {
 
@@ -55,8 +60,8 @@ public class Main {
 		frame.getContentPane().setLayout(gridBagLayout);
 		
 		JLabel lblWelcomeBackUser = new JLabel("Welcome back, user");
-		lblWelcomeBackUser.setForeground(UIManager.getColor("Button.disabledShadow"));
-		lblWelcomeBackUser.setBackground(UIManager.getColor("Button.foreground"));
+		lblWelcomeBackUser.setForeground(Color.WHITE);
+		lblWelcomeBackUser.setBackground(Color.BLACK);
 		GridBagConstraints gbc_lblWelcomeBackUser = new GridBagConstraints();
 		gbc_lblWelcomeBackUser.insets = new Insets(0, 0, 5, 0);
 		gbc_lblWelcomeBackUser.gridx = 0;
@@ -64,18 +69,31 @@ public class Main {
 		frame.getContentPane().add(lblWelcomeBackUser, gbc_lblWelcomeBackUser);
 		
 		JLabel lblWhatDoYou = new JLabel("What do you want to do?");
-		lblWhatDoYou.setBackground(UIManager.getColor("Button.foreground"));
-		lblWhatDoYou.setForeground(UIManager.getColor("Button.disabledShadow"));
+		lblWhatDoYou.setBackground(Color.BLACK);
+		lblWhatDoYou.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblWhatDoYou = new GridBagConstraints();
 		gbc_lblWhatDoYou.insets = new Insets(0, 0, 5, 0);
 		gbc_lblWhatDoYou.gridx = 0;
 		gbc_lblWhatDoYou.gridy = 2;
 		frame.getContentPane().add(lblWhatDoYou, gbc_lblWhatDoYou);
 		
+		Component horizontalStrut = Box.createHorizontalStrut(20);
+		GridBagConstraints gbc_horizontalStrut = new GridBagConstraints();
+		gbc_horizontalStrut.insets = new Insets(0, 0, 5, 0);
+		gbc_horizontalStrut.gridx = 0;
+		gbc_horizontalStrut.gridy = 3;
+		frame.getContentPane().add(horizontalStrut, gbc_horizontalStrut);
+		
 		JButton btnNewButton = new JButton("New Message");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0){
+				new NewMessage();
+			}
+		});
 		btnNewButton.setVerticalAlignment(SwingConstants.BOTTOM);
-		btnNewButton.setForeground(UIManager.getColor("Button.highlight"));
-		btnNewButton.setBackground(UIManager.getColor("CheckBox.foreground"));
+		btnNewButton.setForeground(Color.BLACK);
+		btnNewButton.setBackground(UIManager.getColor("Button.light"));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton.gridx = 0;
@@ -83,12 +101,13 @@ public class Main {
 		frame.getContentPane().add(btnNewButton, gbc_btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("View Messages");
-		btnNewButton_1.setForeground(UIManager.getColor("Button.highlight"));
-		btnNewButton_1.setBackground(UIManager.getColor("Button.foreground"));
+		btnNewButton_1.setForeground(Color.BLACK);
+		btnNewButton_1.setBackground(UIManager.getColor("CheckBox.interiorBackground"));
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.gridx = 0;
 		gbc_btnNewButton_1.gridy = 5;
 		frame.getContentPane().add(btnNewButton_1, gbc_btnNewButton_1);
+		frame.setTitle("Main Window | Random Application");
 	}
 
 }
