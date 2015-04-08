@@ -13,31 +13,8 @@ public class BackEnd {
 
 	public List<String> getMessages(String username) throws IOException
 	{
-		//returns a list of all plaintext messages submitted by a user
-
-		ArrayList<String> messages = new ArrayList<String>();
-		ArrayList<String> backupMessage = new ArrayList<String>();
-		backupMessage.add("no messages");
-
-		File file = new File(username);
-
-		if((!(file.exists()) && !(file.isDirectory())))
-		{
-			FileWriter makefile = new FileWriter(new File("username.txt"));
-		}
-		else
-		{
-			Scanner scan = new Scanner("username.txt");
-			messages = username.read();
-			//while(scan.hasNextLine())
-			//{
-			//	messages.add(scan.nextLine());
-			//}
-			return messages;
-		}
-
-		return backupMessage;
-
+		Encoder encoder(username);
+		return encoder.read();
 	}
 
 	public void addMessage(String username, String msg)
