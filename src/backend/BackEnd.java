@@ -21,19 +21,28 @@ public class BackEnd {
 	{
 		//adds message to the encoded file(s)
 		
-		Encoder encoder(username);
-		encoder.write(msg);
+		return new encoder(username).write(msg);
 	}
 
 	public List<String> getUsers()
 	{
 		//returns a list of all users who have submitted a message
-		Encoder encoder(username);
+	File f = new File("userMessages");
+		File[] showFiles = f.listFiles();
+		ArrayList<String> users = new ArrayList<String>();
+		String extension = ".txt";
+		for(File l : showFiles)
+		{
+			String filename = l.getName();
+			String ext = filename.substring(filename.length() - extension.length());
+			if(ext.equals(extension))
+			{
+				users.add(filename);
+			}
+		}
 		
 		
-		
-		return null;
-
+		return users;
 	}
 
 	public static void main(String[] args)
