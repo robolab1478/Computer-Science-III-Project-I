@@ -20,14 +20,18 @@ public class BackEnd {
 	public void addMessage(String username, String msg)
 	{
 		//adds message to the encoded file(s)
-
-
+		
+		Encoder encoder(username);
+		encoder.write(msg);
 	}
 
 	public List<String> getUsers()
 	{
 		//returns a list of all users who have submitted a message
-
+		Encoder encoder(username);
+		
+		
+		
 		return null;
 
 	}
