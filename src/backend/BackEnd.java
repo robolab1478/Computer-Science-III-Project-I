@@ -28,11 +28,11 @@ public class BackEnd {
 		else
 		{
 			Scanner scan = new Scanner("username.txt");
-			while(scan.hasNextLine())
-			{
-				messages.add(scan.nextLine());
-			}
-			scan.close();
+			messages = username.read();
+			//while(scan.hasNextLine())
+			//{
+			//	messages.add(scan.nextLine());
+			//}
 			return messages;
 		}
 
