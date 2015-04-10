@@ -62,7 +62,6 @@ public class NewMessage {
 		frame.getContentPane().add(horizontalStrut, gbc_horizontalStrut);
 		
 		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Govind", "Vikas", "Rohan the bitch"}));
 		comboBox.setForeground(UIManager.getColor("Button.background"));
 		comboBox.setBackground(UIManager.getColor("Button.foreground"));
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
@@ -101,8 +100,7 @@ public class NewMessage {
 		frame.setTitle("New Message | Ranom project name");
 		frame.setVisible(true);
 		backend.Main e = new backend.Main();
-		List<String> toConvert = e.getUsers();
-		String [] converted = (String[]) toConvert.toArray();
+		comboBox.setModel(new DefaultComboBoxModel<String>((String []) e.getUsers().toArray()));
 	}
 
 }
