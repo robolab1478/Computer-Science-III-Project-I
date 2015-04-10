@@ -122,7 +122,7 @@ public class Main {
 		{
 			public void mouseClicked(MouseEvent arg0)
 			{
-				new ViewMessages().main(null);;
+				new frontend.ViewMessages().main(null);;
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}

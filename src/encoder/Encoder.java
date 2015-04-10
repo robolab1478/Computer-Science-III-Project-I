@@ -1,4 +1,5 @@
 package encoder;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -17,6 +18,14 @@ public class Encoder
 	
 	public Encoder (String filename)
 	{
+		File e = new File(filename);
+		if(!e.exists())
+			try {
+				e.createNewFile();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		//STEPS
 		//1. Create a FileWriter (which creates a file in the process)
 		//2. Create a FileReader (which can read from a file)
@@ -24,7 +33,7 @@ public class Encoder
 		{
 			_fileWriter = new FileWriter("userMessages/" + filename);
 		} 
-		catch (IOException e) 
+		catch (IOException fe) 
 		{
 			// TODO Display Catch Exception
 		}
@@ -33,7 +42,7 @@ public class Encoder
 		{
 			_fileReader = new FileReader("userMessages/" + filename);
 		} 
-		catch (FileNotFoundException e) 
+		catch (FileNotFoundException fe) 
 		{
 			// TODO Display Catch Exception
 		}
@@ -91,7 +100,7 @@ public class Encoder
 	
 	public List<String> read()
 	{
-		ArrayList<Character> lulz = new ArrayList<>();
+		String e = "";
 		char txt = 'a';
 		try {
 			int read = _fileReader.read();
@@ -99,14 +108,18 @@ public class Encoder
 			{
 				txt = (char) read;
 				read = _fileReader.read();
-				lulz.add(txt);
+				e += txt;
 			}
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (IOException ef) {
 		}
-		return null;
+		String [] f = e.split("\n");
+		List<String> g = new ArrayList<String>();
+		for(String t : f)
+		{
+			g.add(decode(t));
+		}
+		return g;
 	}
 	
 }

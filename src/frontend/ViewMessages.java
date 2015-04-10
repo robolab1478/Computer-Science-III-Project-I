@@ -2,13 +2,27 @@ package frontend;
 
 import java.awt.EventQueue;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.GridBagLayout;
+
 import javax.swing.JComboBox;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JButton;
+
 import java.awt.Insets;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ViewMessages {
 
@@ -40,6 +54,7 @@ public class ViewMessages {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -52,6 +67,12 @@ public class ViewMessages {
 		frame.getContentPane().setLayout(gridBagLayout);
 		
 		JComboBox comboBox = new JComboBox();
+		if(new backend.BackEnd().getUsers().size() < 0)
+		{
+			JOptionPane.showMessageDialog(frame,"No Users to view messages from!");
+			frame.dispose();
+		}
+		comboBox.setModel(new DefaultComboBoxModel(new backend.BackEnd().getUsers().toArray()));
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -67,6 +88,26 @@ public class ViewMessages {
 		frame.setTitle("View Messages | Random Name");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		btnGo.addMouseListener(new MouseListener(){
+
+			public void mouseClicked(MouseEvent arg0)
+			{
+				String username = comboBox.getSelectedItem().toString();
+				List<String> e = new ArrayList<String>();
+				try {e = new backend.BackEnd().getMessages(username);} catch (IOException e1) {}
+				String g ="";
+				for(String f : e)
+				{
+					g += f + "\n";
+				}
+				JOptionPane.showMessageDialog(frame,"Messages from "  + username + ": \n" + g);
+			}
+
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+			});
 	}
 
 }

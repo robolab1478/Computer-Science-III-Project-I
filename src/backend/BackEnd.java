@@ -69,6 +69,8 @@ public class BackEnd
 		
 		File f = new File("userMessages");
 		File[] showFiles = f.listFiles();
+		if(showFiles.length == 0)
+			return new ArrayList<String>();
 		ArrayList<String> users = new ArrayList<String>();
 		String extension = ".crpt";
 		for(File l : showFiles)
