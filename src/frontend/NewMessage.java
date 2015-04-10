@@ -4,16 +4,11 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
-
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-
 import javax.swing.DefaultComboBoxModel;
-
 import java.awt.Insets;
 import java.awt.Component;
-import java.util.List;
-
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -99,8 +94,7 @@ public class NewMessage {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setTitle("New Message | Ranom project name");
 		frame.setVisible(true);
-		backend.Main e = new backend.Main();
-		comboBox.setModel(new DefaultComboBoxModel<String>((String []) e.getUsers().toArray()));
+		comboBox.setModel(new DefaultComboBoxModel<String>((String []) new backend.BackEnd().getUsers().toArray()));
 	}
 
 }
