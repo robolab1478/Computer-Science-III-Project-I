@@ -3,18 +3,28 @@ package frontend;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.UIManager;
+
 import java.awt.Insets;
+
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
 import java.awt.Color;
 import java.awt.Component;
+
 import javax.swing.Box;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class Main {
 
@@ -108,6 +118,17 @@ public class Main {
 		gbc_btnNewButton_1.gridy = 5;
 		frame.getContentPane().add(btnNewButton_1, gbc_btnNewButton_1);
 		frame.setTitle("Main Window | Random Application");
+		btnNewButton_1.addMouseListener(new MouseListener()
+		{
+			public void mouseClicked(MouseEvent arg0)
+			{
+				new ViewMessages().main(null);;
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+		});
 	}
 
 }

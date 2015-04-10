@@ -3,12 +3,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 public class Encoder 
 {
-	
+    
 	private String _fileName;
 	private FileWriter _fileWriter;
 	private FileReader _fileReader;
@@ -20,7 +22,7 @@ public class Encoder
 		//2. Create a FileReader (which can read from a file)
 		try 
 		{
-			_fileWriter = new FileWriter(filename);
+			_fileWriter = new FileWriter("userMessages/" + filename);
 		} 
 		catch (IOException e) 
 		{
@@ -29,7 +31,7 @@ public class Encoder
 		
 		try 
 		{
-			_fileReader = new FileReader(filename);
+			_fileReader = new FileReader("userMessages/" + filename);
 		} 
 		catch (FileNotFoundException e) 
 		{
@@ -37,7 +39,7 @@ public class Encoder
 		}
 	}
 	
-	private String Encode (String plaintext)
+	private String encode (String plaintext)
 	{
 		String encoded = "";
 		//Encodes plain text into obfuscated text
@@ -52,7 +54,7 @@ public class Encoder
 		return encoded;
 	}
 	
-	private String Decode (String encodedText)
+	private String decode (String encodedText)
 	{
 		String decoded = "";
 		//Encodes plain text into obfuscated text
@@ -69,10 +71,17 @@ public class Encoder
 	
 	public void write(String plaintext)
 	{
-		String encodedText = this.Encode(plaintext);
+		List<String> prev = this.read();
+		String encoded = "";
+		for(String s : prev)
+		{
+			encoded += encode(s)  + "\n"; 
+		}
+		encoded += this.encode(plaintext);
 		try 
 		{
-			_fileWriter.write(encodedText);
+			_fileWriter.write(encoded);
+			_fileWriter.close();
 		} 
 		catch (IOException e) 
 		{
@@ -82,8 +91,22 @@ public class Encoder
 	
 	public List<String> read()
 	{
-		
-		
+		ArrayList<Character> lulz = new ArrayList<>();
+		char txt = 'a';
+		try {
+			int read = _fileReader.read();
+			while(read != -1)
+			{
+				txt = (char) read;
+				read = _fileReader.read();
+				lulz.add(txt);
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
+	
 }
