@@ -70,13 +70,13 @@ public class BackEnd
 		File f = new File("userMessages");
 		File[] showFiles = f.listFiles();
 		ArrayList<String> users = new ArrayList<String>();
-		String extension = ".txt";
+		String extension = ".crpt";
 		for(File l : showFiles)
 		{
 			String filename = l.getName();
 			String ext = filename.substring(filename.length() - extension.length());
 			if(ext.equals(extension))
-				users.add(filename);
+				users.add(filename.substring(0, filename.length() - extension.length()));
 		}
 		
 		
