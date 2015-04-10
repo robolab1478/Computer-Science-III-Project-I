@@ -60,7 +60,7 @@ public class BackEnd
 		//Encoder encoder(username);
 		///encoder.write(msg);
 		
-		new encoder.Encoder(username).write(msg);
+		new encoder.Encoder(username+".crpt").write(msg);
 	}
 
 	public List<String> getUsers()
@@ -78,8 +78,6 @@ public class BackEnd
 			if(ext.equals(extension))
 				users.add(filename.substring(0, filename.length() - extension.length()));
 		}
-		
-		
 		return users;
 	}
 }
